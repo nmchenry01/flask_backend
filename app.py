@@ -13,7 +13,7 @@ q.ApiConfig.api_key = "xaFxr9SP6Wd5sKFHdEax"
 
 app = Flask(__name__)
 CORS(app)
-@app.route('http://flaskbackend-nmchenry.cloudapps.unc.edu', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 
 @app.route("/<stock>/<start_date>/<end_date>")
 def return_data(stock, start_date, end_date):
