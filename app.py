@@ -216,5 +216,5 @@ def return_data(stock, start_date, end_date):
 })
 
 if __name__ == "__main__":
-	#app.run(debug=True)
-	app.run()
+	app.run(debug=True)
+	app.run(host='0.0.0.0')
