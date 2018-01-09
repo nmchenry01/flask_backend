@@ -124,11 +124,16 @@ def calculate_autocorrelation(ret):
         count_array = []
 
         for i in range(0,22):
-            auto_corr_array.append(ret.Adj_Close.autocorr(i))
+            auto_corr_array.append(ret.Close.autocorr(i))
             count_array.append(i)
 
         autocorrelation_dict = dict(zip(count_array,auto_corr_array))
+        return_dict = {}
+        
+        for key in autocorrelation_dict:
+            if not math.isnan(autocorrelation_dict[key]):
+                return_dict[key] = autocorrelation_dict[key]
 
-        return json.dumps(autocorrelation_dict)
+        return json.dumps(return_dict)
     else:
         raise ValueError('Expected a dataframe for autocorrelation calculations') 
