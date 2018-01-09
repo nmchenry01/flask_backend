@@ -125,7 +125,7 @@ def calculate_autocorrelation(ret):
         count_array = []
 
         for i in range(0,22):
-            auto_corr_array.append(ret.Close.autocorr(i))
+            auto_corr_array.append(ret.Adj_Close.autocorr(i))
             count_array.append(i)
 
         autocorrelation_dict = dict(zip(count_array,auto_corr_array))
