@@ -49,7 +49,7 @@ def return_data(stock, start_date, end_date):
 						"is_date_error": True})
 
 	#Make sure a decently wide range of dates is selected (set to a month right now)
-	if(date_diff.days < 31):
+	if(date_diff.days <= 31):
 		return jsonify({"is_valid": False,
 						"is_date_diff_error": True})
 
