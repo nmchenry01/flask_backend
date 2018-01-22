@@ -68,10 +68,13 @@ def max_ret(daily_ret):
 def make_histogram_daily(ret):
     if isinstance(ret, pd.DataFrame):
         #Use Numpy histogram functionality
-        count, division = np.histogram(ret, bins=np.linspace(-.05,.05,101))
+        count, division = np.histogram(ret, bins=np.linspace(-.05,.05,101),density=True)
+
+        #Convert to density values of unity density (so it sums to 1)
+        unity_count = count / count.sum()
 
         #Convert to python native datatypes
-        native_count = [np.asscalar(c) for c in count]
+        native_count = [np.asscalar(c) for c in unity_count]
         str_division = [str(d) for d in division]
 
         #Form bin/count pairs 
