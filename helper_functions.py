@@ -87,10 +87,13 @@ def make_histogram_daily(ret):
 def make_histogram_weekly(ret):
     if isinstance(ret, pd.DataFrame):
         #Use Numpy histogram functionality
-        count, division = np.histogram(ret, bins=np.linspace(-.15,.15,101))
+        count, division = np.histogram(ret, bins=np.linspace(-.15,.15,101),density=True)
+        
+        #Convert to density values of unity density (so it sums to 1)
+        unity_count = count / count.sum()
 
         #Convert to python native datatypes
-        native_count = [np.asscalar(c) for c in count]
+        native_count = [np.asscalar(c) for c in unity_count]
         str_division = [str(d) for d in division]
 
         #Form bin/count pairs 
@@ -103,10 +106,13 @@ def make_histogram_weekly(ret):
 def make_histogram_monthly(ret):
     if isinstance(ret, pd.DataFrame):
         #Use Numpy histogram functionality
-        count, division = np.histogram(ret, bins=np.linspace(-.3,.3,101))
+        count, division = np.histogram(ret, bins=np.linspace(-.3,.3,101), density=True)
+
+        #Convert to density values of unity density (so it sums to 1)
+        unity_count = count / count.sum()
 
         #Convert to python native datatypes
-        native_count = [np.asscalar(c) for c in count]
+        native_count = [np.asscalar(c) for c in unity_count]
         str_division = [str(d) for d in division]
 
         #Form bin/count pairs 
